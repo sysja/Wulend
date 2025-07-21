@@ -94,6 +94,29 @@
       margin-bottom: 20px;
     }
 
+    .profile-info {
+      max-width: 600px;
+      text-align: left;
+      margin-bottom: 40px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-info h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .profile-info p {
+      font-size: 16px;
+      color: #aaa;
+      margin: 10px 0;
+    }
+
     .profile-links {
       display: flex;
       flex-direction: column;
@@ -115,6 +138,64 @@
 
     .profile-links a:hover {
       background: #4f46e5;
+    }
+
+    .password-change {
+      max-width: 400px;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .password-change h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .password-change form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .password-change input {
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .password-change button {
+      margin: 10px 0;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .password-change button:hover {
+      background: #4f46e5;
+    }
+
+    .error, .success {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .error {
+      color: #f87171;
+    }
+
+    .success {
+      color: #34d399;
     }
 
     .logout {
@@ -158,11 +239,28 @@
   <section class="profile">
     <h1>Личный кабинет</h1>
     <p>Добро пожаловать, <span id="username"></span>!</p>
-    <p>Здесь вы можете управлять своим аккаунтом и получить доступ к основным разделам.</p>
+    <div class="profile-info">
+      <h2>Информация об аккаунте</h2>
+      <p><strong>Логин:</strong> <span id="usernameDisplay"></span></p>
+      <p><strong>Группа:</strong> <span id="group"></span></p>
+      <p><strong>Дата регистрации:</strong> <span id="regDate"></span></p>
+      <p><strong>Последний вход:</strong> <span id="lastLogin"></span></p>
+      <p><strong>Статус подписки:</strong> <span id="subscription"></span></p>
+      <p><strong>HWID:</strong> <span id="hwid"></span></p>
+      <p><strong>История покупок:</strong> <span id="purchaseHistory">Нет покупок</span></p>
+    </div>
     <div class="profile-links">
       <a href="buy.html" target="_blank">Купить чит</a>
       <a href="details.html" target="_blank">Подробнее о чите</a>
       <a href="contacts.html" target="_blank">Контакты</a>
+    </div>
+    <div class="password-change">
+      <h2>Смена пароля</h2>
+      <form id="passwordForm">
+        <input type="password" id="newPassword" placeholder="Новый пароль" required>
+        <button type="submit">Сменить пароль</button>
+      </form>
+      <p id="passwordMessage" class="error"></p>
     </div>
     <button class="logout" onclick="logout()">Выйти</button>
   </section>
@@ -175,8 +273,25 @@
     if (!localStorage.getItem('loggedInUser')) {
       window.location.href = 'login.html';
     }
-    const usernameSpan = document.getElementById('username');
-    usernameSpan.textContent = localStorage.getItem('loggedInUser') || 'Пользователь';
+    const username = localStorage.getItem('loggedInUser') || 'Пользователь';
+    document.getElementById('username').textContent = username;
+    document.getElementById('usernameDisplay').textContent = username;
+    document.getElementById('group').textContent = localStorage.getItem(`group_${username}`) || 'Пользователь';
+    document.getElementById('regDate').textContent = localStorage.getItem(`regDate_${username}`) || 'Неизвестно';
+    document.getElementById('lastLogin').textContent = localStorage.getItem(`lastLogin_${username}`) || 'Неизвестно';
+    document.getElementById('subscription').textContent = localStorage.getItem(`subscription_${username}`) || 'Не приобретено';
+    document.getElementById('hwid').textContent = localStorage.getItem(`hwid_${username}`) || 'Не привязан';
+
+    document.getElementById('passwordForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newPassword = document.getElementById('newPassword').value;
+      const message = document.getElementById('passwordMessage');
+      localStorage.setItem(`user_${username}`, newPassword);
+      message.className = 'success';
+      message.textContent = 'Пароль успешно изменён';
+      document.getElementById('newPassword').value = '';
+    });
+
     function logout() {
       localStorage.removeItem('loggedInUser');
       window.location.href = 'login.html';

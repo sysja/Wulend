@@ -158,16 +158,16 @@
 
   <header>
     <div class="logo">Wulend</div>
-    <nav>
+    <nav id="nav">
       <a href="index.html">Главная</a>
-      <a href="#">Скачать</a>
-      <a href="login.html">Контакты</a>
+      <a href="buy.html">Купить</a>
+      <a href="login.html" id="authLink">Контакты</a>
     </nav>
   </header>
 
   <section class="register">
     <h1>Регистрация</h1>
-    <p>Создайте аккаунт, чтобы получить доступ к контактам.</p>
+    <p>Создайте аккаунт, чтобы получить доступ к личному кабинету.</p>
     <form id="registerForm">
       <input type="text" id="username" placeholder="Имя пользователя" required>
       <input type="password" id="password" placeholder="Пароль" required>
@@ -193,9 +193,14 @@
       } else {
         localStorage.setItem(`user_${username}`, password);
         localStorage.setItem('loggedInUser', username);
-        window.location.href = 'contacts.html';
+        window.location.href = 'profile.html';
       }
     });
+    const authLink = document.getElementById('authLink');
+    if (localStorage.getItem('loggedInUser')) {
+      authLink.textContent = 'Личный кабинет';
+      authLink.href = 'profile.html';
+    }
   </script>
 
 </body>

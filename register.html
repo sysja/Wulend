@@ -191,7 +191,13 @@
       if (localStorage.getItem(`user_${username}`)) {
         error.textContent = 'Имя пользователя уже занято';
       } else {
+        const now = new Date();
+        const registrationDate = now.toISOString().slice(0, 16).replace('T', ' ');
         localStorage.setItem(`user_${username}`, password);
+        localStorage.setItem(`group_${username}`, 'Пользователь');
+        localStorage.setItem(`regDate_${username}`, registrationDate);
+        localStorage.setItem(`subscription_${username}`, 'Не приобретено');
+        localStorage.setItem(`hwid_${username}`, 'Не привязан');
         localStorage.setItem('loggedInUser', username);
         window.location.href = 'profile.html';
       }

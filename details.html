@@ -145,23 +145,6 @@
       margin-bottom: 10px;
     }
 
-    .logout {
-      margin-top: 20px;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 12px;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .logout:hover {
-      background: #4f46e5;
-    }
-
     footer {
       margin-top: 80px;
       padding: 20px 40px;
@@ -176,10 +159,10 @@
 
   <header>
     <div class="logo">Wulend</div>
-    <nav>
+    <nav id="nav">
       <a href="index.html">Главная</a>
-      <a href="#">Скачать</a>
-      <a href="login.html">Контакты</a>
+      <a href="buy.html">Купить</a>
+      <a href="profile.html" id="authLink">Личный кабинет</a>
     </nav>
   </header>
 
@@ -216,8 +199,6 @@
         <li><strong>Интернет:</strong> Стабильное соединение для авторизации</li>
       </ul>
     </div>
-
-    <button class="logout" onclick="logout()">Выйти</button>
   </section>
 
   <footer>
@@ -228,10 +209,10 @@
     if (!localStorage.getItem('loggedInUser')) {
       window.location.href = 'login.html';
     }
-
-    function logout() {
-      localStorage.removeItem('loggedInUser');
-      window.location.href = 'login.html';
+    const authLink = document.getElementById('authLink');
+    if (localStorage.getItem('loggedInUser')) {
+      authLink.textContent = 'Личный кабинет';
+      authLink.href = 'profile.html';
     }
   </script>
 

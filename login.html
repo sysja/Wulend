@@ -190,6 +190,9 @@
 
       const storedPassword = localStorage.getItem(`user_${username}`);
       if (storedPassword && storedPassword === password) {
+        const now = new Date();
+        const lastLogin = now.toISOString().slice(0, 16).replace('T', ' ');
+        localStorage.setItem(`lastLogin_${username}`, lastLogin);
         localStorage.setItem('loggedInUser', username);
         window.location.href = 'profile.html';
       } else {

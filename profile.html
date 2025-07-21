@@ -117,104 +117,6 @@
       margin: 10px 0;
     }
 
-    .profile-links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-bottom: 40px;
-    }
-
-    .profile-links a {
-      display: inline-block;
-      padding: 14px 28px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      background: var(--accent);
-      color: white;
-      transition: 0.2s;
-    }
-
-    .profile-links a:hover {
-      background: #4f46e5;
-    }
-
-    .password-change {
-      max-width: 400px;
-      text-align: left;
-      margin-bottom: 40px;
-    }
-
-    .password-change h2 {
-      font-size: 32px;
-      font-weight: 800;
-      color: white;
-      margin-bottom: 20px;
-    }
-
-    .password-change form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .password-change input {
-      margin: 10px 0;
-      padding: 12px;
-      border: 1px solid #333;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--text);
-      font-size: 16px;
-    }
-
-    .password-change button {
-      margin: 10px 0;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .password-change button:hover {
-      background: #4f46e5;
-    }
-
-    .error, .success {
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    .error {
-      color: #f87171;
-    }
-
-    .success {
-      color: #34d399;
-    }
-
-    .logout {
-      margin-top: 20px;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 12px;
-      background: #f87171;
-      color: white;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .logout:hover {
-      background: #ef4444;
-    }
-
     footer {
       margin-top: 80px;
       padding: 20px 40px;
@@ -248,20 +150,6 @@
       <p><strong>Статус подписки:</strong> <span id="subscription"></span></p>
       <p><strong>HWID:</strong> <span id="hwid"></span></p>
     </div>
-    <div class="profile-links">
-      <a href="buy.html" target="_blank">Купить чит</a>
-      <a href="details.html" target="_blank">Подробнее о чите</a>
-      <a href="contacts.html" target="_blank">Контакты</a>
-    </div>
-    <div class="password-change">
-      <h2>Смена пароля</h2>
-      <form id="passwordForm">
-        <input type="password" id="newPassword" placeholder="Новый пароль" required>
-        <button type="submit">Сменить пароль</button>
-      </form>
-      <p id="passwordMessage" class="error"></p>
-    </div>
-    <button class="logout" onclick="logout()">Выйти</button>
   </section>
 
   <footer>
@@ -281,20 +169,6 @@
     document.getElementById('subscription').textContent = localStorage.getItem(`subscription_${username}`) || 'Не приобретено';
     document.getElementById('hwid').textContent = localStorage.getItem(`hwid_${username}`) || 'Не привязан';
 
-    document.getElementById('passwordForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const newPassword = document.getElementById('newPassword').value;
-      const message = document.getElementById('passwordMessage');
-      localStorage.setItem(`user_${username}`, newPassword);
-      message.className = 'success';
-      message.textContent = 'Пароль успешно изменён';
-      document.getElementById('newPassword').value = '';
-    });
-
-    function logout() {
-      localStorage.removeItem('loggedInUser');
-      window.location.href = 'login.html';
-    }
     const authLink = document.getElementById('authLink');
     if (localStorage.getItem('loggedInUser')) {
       authLink.textContent = 'Личный кабинет';

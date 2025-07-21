@@ -153,10 +153,10 @@
 
   <header>
     <div class="logo">Wulend</div>
-    <nav>
+    <nav id="nav">
       <a href="#">Главная</a>
       <a href="buy.html" target="_blank">Купить</a>
-      <a href="login.html" target="_blank">Контакты</a>
+      <a href="login.html" id="authLink" target="_blank">Контакты</a>
     </nav>
   </header>
 
@@ -176,6 +176,14 @@
   <footer>
     © 2025 Wulend Client. Все права защищены.
   </footer>
+
+  <script>
+    const authLink = document.getElementById('authLink');
+    if (localStorage.getItem('loggedInUser')) {
+      authLink.textContent = 'Личный кабинет';
+      authLink.href = 'profile.html';
+    }
+  </script>
 
 </body>
 </html>

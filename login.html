@@ -191,7 +191,15 @@
       const storedPassword = localStorage.getItem(`user_${username}`);
       if (storedPassword && storedPassword === password) {
         const now = new Date();
-        const lastLogin = now.toISOString().slice(0, 16).replace('T', ' ');
+        const options = { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric', 
+          hour: '2-digit', 
+          minute: '2-digit', 
+          hour12: false 
+        };
+        const lastLogin = now.toLocaleString('ru-RU', options);
         localStorage.setItem(`lastLogin_${username}`, lastLogin);
         localStorage.setItem('loggedInUser', username);
         window.location.href = 'profile.html';

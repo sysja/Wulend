@@ -192,7 +192,15 @@
         error.textContent = 'Имя пользователя уже занято';
       } else {
         const now = new Date();
-        const registrationDate = now.toISOString().slice(0, 16).replace('T', ' ');
+        const options = { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric', 
+          hour: '2-digit', 
+          minute: '2-digit', 
+          hour12: false 
+        };
+        const registrationDate = now.toLocaleString('ru-RU', options);
         localStorage.setItem(`user_${username}`, password);
         localStorage.setItem(`group_${username}`, 'Пользователь');
         localStorage.setItem(`regDate_${username}`, registrationDate);

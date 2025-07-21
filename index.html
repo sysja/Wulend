@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wulend — приватный чит Minecraft 1.16.5</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: rgba(255, 255, 255, 0.05);
+      --text: #e5e5e5;
+      --accent: #6366f1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: #0e0f14;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: white;
+    }
+
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: #aaa;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      padding: 100px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(circle at top left, #1f2937, #0b0c10);
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 18px;
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+
+    .hero-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #4f46e5;
+    }
+
+    .btn-secondary {
+      border: 1px solid #333;
+      background: rgba(255, 255, 255, 0.02);
+      color: #ccc;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .preview {
+      margin-top: 50px;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 960px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .preview img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 20px 40px;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      background: #0d0d0d;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Wulend</div>
+    <nav>
+      <a href="#">Главная</a>
+      <a href="buy.html" target="_blank">Купить</a>
+      <a href="login.html" target="_blank">Контакты</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Wulend — приватный чит для Minecraft 1.16.5</h1>
+    <p>Рабочий клиент с нужными функциями: KillAura, Speed, TargetHUD и обходами под HvH-серверы. Оптимизирован под 1.16.5, подходит для PvP и тестов.</p>
+    <div class="hero-buttons">
+      <a href="buy.html" target="_blank" class="btn-primary">Купить</a>
+      <a href="details.html" target="_blank" class="btn-secondary">Подробнее</a>
+    </div>
+
+    <div class="preview">
+      <img src="screenshot.png" alt="Превью чита Wulend">
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Wulend Client. Все права защищены.
+  </footer>
+
+</body>
+</html>
